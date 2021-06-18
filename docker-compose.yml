@@ -21,7 +21,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./projectsettings:/projectsettings
+      - ./backend:/backend
 
 volumes:
   postgres_volume:

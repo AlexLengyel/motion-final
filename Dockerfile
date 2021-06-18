@@ -35,5 +35,5 @@ RUN npm install
 COPY ./frontend /frontend_tmp
 RUN npm run build
 
-# for gunicorn to connect to projectsettings directory instead of frontend
+# for gunicorn to connect to backend directory instead of frontend
 WORKDIR /backend
