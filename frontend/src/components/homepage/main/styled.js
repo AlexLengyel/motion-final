@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backgroundimage from '../../../assets/main/backgroundimage.svg';
+import backgroundimage from '../../../assets/main/background_image.png';
 
 export const LeftContainer = styled.div`
     width: 40%;

@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p%d2m1&f=$2_9$30fua-+v#om8478uamvj(zm5a5xq@sf1b4m3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#dynamic setting
+# dynamic setting
 DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
 
 ALLOWED_HOSTS = ['*']
@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'post',
     'registration',
     'friendrequest',
-    'comment'
+    'comment',
+    # DOCUMENTATION
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -94,7 +96,6 @@ DATABASES = {
         "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
     }
 }
-
 
 
 # Password validation
@@ -162,6 +163,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
 }
 
 SIMPLE_JWT = {
@@ -169,3 +171,15 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
 }
 
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,  # Change settings to True to enable Django Login option
+    'LOGIN_URL': 'admin/',  # URL For Django Login
+    'LOGOUT_URL': 'admin/logout/',  # URL For Django Logout
+    'SECURITY_DEFINITIONS': {  # Allows usage of Access token to make requests on the docs.
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}

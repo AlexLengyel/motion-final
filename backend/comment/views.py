@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from comment.models import Comment
 from comment.serializers import NewCommentSerializer
@@ -7,6 +8,7 @@ from comment.serializers import NewCommentSerializer
 
 class ListCreateComment(ListCreateAPIView):
     serializer_class = NewCommentSerializer
+    pagination_class = LimitOffsetPagination
 
     def create(self, request, *args, **kwargs):
         author = self.request.user

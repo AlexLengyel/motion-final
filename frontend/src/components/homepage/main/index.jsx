@@ -13,7 +13,7 @@ export const Main = () => {
             <Top>
                 <img src={logo} alt='logo' />
                 <h1>Motion</h1>
-                <p>Connect with your friends around the world around you with Motion</p>
+                <p>Connect with your friends around the world with Motion</p>
             </Top>
             <Middle>
                 <button>
