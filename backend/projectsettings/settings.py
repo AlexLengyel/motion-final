@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     # Models
     'user',
     'post',
-    'userprofile',
     'registration',
-    'friendrequest'
+    'friendrequest',
+    'comment'
 ]
 
 MIDDLEWARE = [
@@ -135,9 +135,17 @@ USE_TZ = True
 
 STATIC_URL = '/static-files/'
 STATIC_ROOT = '/static-files/'
-# MEDIA_URL = '/media-files/'
-# MEDIA_ROOT = '/media-files'
 
+MEDIA_URL = '/media-files/'
+MEDIA_ROOT = '/media-files/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media-files')
+
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
 
 
 # Default primary key field type

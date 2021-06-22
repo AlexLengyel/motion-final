@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import RetrieveUserPostView, ListFollowingUsersPostView, ListCreatePostsView, \
-    RetrieveUpdateDestroyPostsView, ToggleLikes
-from .views import RetrieveUserPostView, ListFollowingUsersPostView, ListCreatePostsView, RetrieveUpdateDestroyPostsView, ListUserLikedPostsView
+from .views import RetrieveUserPostView, ListFollowingUsersPostView, ListCreatePostsView, RetrieveUpdateDestroyPostsView,\
+    ListUserLikedPostsView, ToggleLikes
 
 urlpatterns = [
     path('social/posts/', ListCreatePostsView.as_view()),

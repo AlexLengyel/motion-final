@@ -9,9 +9,7 @@ def add_to_friends(sender, instance, created, **kwargs):
     requester = instance.requester
     receiver = instance.receiver
     if instance.status == 'A':
-        requester.friends.add(receiver.user)
-        receiver.friends.add(requester.user)
+        requester.friends.add(receiver)
+        receiver.friends.add(requester)
         requester.save()
         receiver.save()
-    elif instance.status == 'R':
-        instance.delete()

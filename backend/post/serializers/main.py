@@ -24,6 +24,3 @@ class PostsReadSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'content', 'images', 'created', 'author', 'liked_by', 'number_of_likes']
         read_only = ['id', 'created', 'updated', 'author', 'liked_by']
-
-
-

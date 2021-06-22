@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from userprofile.models import UserProfile
+# from userprofile.models import UserProfile
 
 User = get_user_model()
 
 
+# creating friend requests
 class FriendRequest(models.Model):
-    requester = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE, related_name='requester')
-    receiver = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE, related_name='receiver')
+    requester = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='requester')
+    receiver = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='receiver')
     status = models.CharField(max_length=10, choices=[('P', 'Pending'), ('A', 'Accepted'), ('R', 'Rejected')],
                               default='P')
     created = models.DateTimeField(auto_now_add=True)

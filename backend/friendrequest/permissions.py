@@ -1,16 +1,10 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsRequester(BasePermission):
+# only the sender can DELETE the request. The receiver can simply just reject it via PATCH
+class FriendRequestPermissions(BasePermission):
     def has_object_permission(self, request, view, obj):
-        if request.user.id == obj.requester.user_id:
-            return True
+        if request.method == 'DELETE':
+            return request.user.id == obj.requester.id
         else:
-            return False
-
-class IsReceiver(BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.user.id == obj.receiver.user_id:
-            return True
-        else:
-            return False
+            return request.user.id == obj.receiver.id
