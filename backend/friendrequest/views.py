@@ -13,6 +13,12 @@ User = get_user_model()
 
 
 class NewFriendRequest(CreateAPIView):
+    """
+    Create a friend request
+
+    Send a friend request. provide recipient ID in URL.
+    Body can be left empty
+    """
     queryset = FriendRequest.objects.all()
     serializer_class = FriendRequestSerializer
 
@@ -57,6 +63,18 @@ class NewFriendRequest(CreateAPIView):
 
 
 class GetAcceptRejectFriendrequest(RetrieveUpdateDestroyAPIView):
+    """
+    patch:
+    Accept or reject a friend request
+
+    Request ID must be passed in the URL. Body must contain status "R" or "A"
+
+    delete:
+    Cancel a friend request
+
+    This only works for the sender of the friend request. Request ID to be passed in URL.
+    Nothing to add in body
+    """
     queryset = FriendRequest.objects.all()
     serializer_class = AcceptRejectSerializer
     permission_classes = [FriendRequestPermissions]
@@ -64,6 +82,12 @@ class GetAcceptRejectFriendrequest(RetrieveUpdateDestroyAPIView):
 
 # list requests that are pending approval or rejection
 class ListPendingFriendRequests(ListAPIView):
+    """
+    Retrieve friend requests
+
+    This view returns all friend requests in which the logged in user is involved, be it as a sender or a recipient.
+    Frontend Dev. can map the response accordingly.
+    """
     serializer_class = FriendRequestSerializer
     """
     This view will return all requests that the logged in user is involved in

@@ -12,6 +12,11 @@ User = get_user_model()
 
 
 class RegisterNewUser(CreateAPIView):
+    """
+    Register a new user
+
+    Body must only contain a valid email address. User will receive an email containing a verification code.
+    """
     permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
@@ -40,6 +45,11 @@ class RegisterNewUser(CreateAPIView):
 
 
 class PasswordReset(CreateAPIView):
+    """
+    Password reset
+
+    Body must only contain a valid email address. User will receive an email containing a verification code.
+    """
     permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
@@ -66,6 +76,24 @@ class PasswordReset(CreateAPIView):
 
 # This works for both new user registration and password reset
 class Validation(UpdateAPIView):
+    """
+    New user validation or reset existing user password
+
+    For /auth/password-reset/validation/, body must contain:
+    - email
+    - password
+    - password_repeat
+    - code
+
+    For /auth/registration/validation/, body must contain:
+    - email
+    - password
+    - password_repeat
+    - code
+    - first_name
+    - last_name
+    - username
+    """
     permission_classes = [AllowAny]
     """
     We're using two urls to connect to this same view, as having two views would be a matter of copy-pasting

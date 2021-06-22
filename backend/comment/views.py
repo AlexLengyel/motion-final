@@ -7,6 +7,19 @@ from comment.serializers import NewCommentSerializer
 
 
 class ListCreateComment(ListCreateAPIView):
+    """
+    post:
+    Create a comment
+
+    Post ID must be passed in URL, and body must contain:
+    - Text
+    - Images
+
+    get:
+    List all comments for a specific post
+
+    This will list all comments related to a specific post. Post ID must be passed in URL.
+    """
     serializer_class = NewCommentSerializer
     pagination_class = LimitOffsetPagination
 
