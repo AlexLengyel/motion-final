@@ -29,7 +29,13 @@ SECRET_KEY = 'django-insecure-p%d2m1&f=$2_9$30fua-+v#om8478uamvj(zm5a5xq@sf1b4m3
 DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ALLOWED_ORIGINS = [
+    "https://krab-motion.propulsion-learn.ch/",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://0.0.0.0:8000",
+    "http://127.0.0.1:8000"
+]
 
 # Application definition
 
