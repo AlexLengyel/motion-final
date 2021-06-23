@@ -30,6 +30,7 @@ class PostsReadSerializer(serializers.ModelSerializer):
     amount_of_likes = serializers.SerializerMethodField()
     is_from_logged_in_user = serializers.SerializerMethodField()
     logged_in_user_liked = serializers.SerializerMethodField()
+    images = ImageSerializer(many=True, read_only=True)
 
     def get_amount_of_comments(self, obj):
         return obj.comment_set.count()
@@ -45,5 +46,17 @@ class PostsReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = [
+            'id',
+            'author',
+            'amount_of_comments',
+            'amount_of_likes',
+            'is_from_logged_in_user',
+            'logged_in_user_liked',
+            'images'
+            'content',
+            'created',
+            'updated',
+            'liked_by'
+        ]
         read_only = ['id', 'created', 'updated', 'author', 'liked_by']
