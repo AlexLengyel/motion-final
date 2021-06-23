@@ -83,10 +83,10 @@ const Navigation = props => {
             <RightContainer>
                 <button className="toggleFriendsModal" ref={ref} id="notificationButton" onClick={() => setToggleFriendsModal(!toggleFriendsModal)}>
                     <img className="toggleFriendsModal" id="notificationBell" src={notificationIcon} />
-                    <div className="toggleFriendsModal" id="notificationCircle">
-                        <span className="toggleFriendsModal">{friendsRequests.length ? friendsRequests.length - 1 : 0}</span>
-                        <img className="toggleFriendsModal" src={notificationCircle} />
-                    </div>
+                    {/*<div className="toggleFriendsModal" id="notificationCircle">*/}
+                    {/*    <span className="toggleFriendsModal">{friendsRequests.length ? friendsRequests.length - 1 : 0}</span>*/}
+                    {/*    <img className="toggleFriendsModal" src={notificationCircle} />*/}
+                    {/*</div>*/}
                 </button>
                 <img src={userData.avatar} id="userAvatar" alt="avatar" />
                 <button className="toggleUserModal" ref={ref} id="menuButton" onClick={() => setToggleUserModal(!toggleUserModal)}>

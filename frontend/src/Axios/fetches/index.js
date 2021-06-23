@@ -5,7 +5,7 @@ export const fetchPosts = async dispatch => {
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     };
-    const url = 'social/posts/';
+    const url = 'social/posts/?limit=25&offset=0';
     const response = await Axios.get(url, config);
     dispatch(f.postList(response.data.results));
 };

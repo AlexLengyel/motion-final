@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux'
 const Post = props => {
     const dispatch = useDispatch();
     // destructuring post
-    const { user, images, amount_of_likes, content, created,  logged_in_user_liked, is_from_logged_in_user, id } = props.post;
+    const { author, images, amount_of_likes, content, created,  logged_in_user_liked, is_from_logged_in_user, id } = props.post;
 
     const [editToggle, setEditToggle] = useState(false)
     const [totalLikes, setTotalLikes] = useState(amount_of_likes)
@@ -48,11 +48,11 @@ const Post = props => {
             <div className="post-upper">
                 <div className="top-left-container">
                     <div className="left-side">
-                        <img className="avatar" src={user.avatar ? user.avatar : defaultAvatar} alt="profile pic" />
+                        <img className="avatar" src={author.avatar ? author.avatar : defaultAvatar} alt="profile pic" />
                     </div>
                     <div className="left-side" style={{ 'margin-left': '20px' }}>
                         <span>
-                            {user['first_name']} {user['last_name']}
+                            {author['first_name']} {author['last_name']}
                         </span>
                         <TimeAgo className="small-font" date={created} />
                     </div>
