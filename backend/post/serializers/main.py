@@ -1,18 +1,26 @@
 from rest_framework import serializers
 from post.models import Post
+from post.models import Image
 
 
 #  Used in any action requiring rewriting post content
 from user.serializers.mainserializer import MainUserSerializer
 
 
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ['image']
+
+
 class PostsWriteSerializer(serializers.ModelSerializer):
     author = MainUserSerializer(read_only=True)
+    images = ImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
         fields = ['id', 'content', 'images', 'created', 'liked_by', 'author']
-        read_only = ['id', 'created', 'updated', 'liked_by', 'author']
+        read_only = ['id', 'created', 'updated', 'liked_by', 'author', 'images']
 
 
 #  Used in any action requiring the reading of post content

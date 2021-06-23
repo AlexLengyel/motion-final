@@ -5,12 +5,11 @@ User = get_user_model()
 
 
 def post_directory_path(instance, filename):
-    return f'{instance.id}/{filename}'
+    return f'user_{instance.post.author.id}/{instance.post.id}/{filename}'
 
 
 class Post(models.Model):
     content = models.TextField(blank=True)
-    images = models.ImageField(upload_to=post_directory_path, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(to=User, related_name="user_posts", on_delete=models.CASCADE)
@@ -18,3 +17,11 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post: {self.id}, Author: {self.author}"
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to=post_directory_path, blank=True, null=True)
+    post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name='images')
+
+    def __str__(self):
+        return f"Image #{self.id} on {self.post}"

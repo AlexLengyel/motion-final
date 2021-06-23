@@ -30,7 +30,7 @@ DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
-    "https://krab-motion.propulsion-learn.ch/",
+    "https://krab-motion.propulsion-learn.ch",
     "http://localhost:3000",
     "http://localhost:8000",
     "http://0.0.0.0:8000",
