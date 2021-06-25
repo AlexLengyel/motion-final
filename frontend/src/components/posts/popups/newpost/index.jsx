@@ -5,6 +5,7 @@ import send from "../../../../assets/posts/send.svg";
 import { useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import Axios from "../../../../Axios";
+import Avatar from "../../../../styles/Avatar";
 
 
 const Popup = props => {
@@ -59,7 +60,7 @@ const Popup = props => {
                 <CloseButton onClick={() => {props.close(false); setImages([])}}><img src={close} alt='close'/></CloseButton>
                 <NewPostForm onSubmit={createPost}>
                     <div className="subContainer">
-                        <img className="profilepic" src={userData.avatar} alt="profile pic" />
+                        <Avatar user={userData.avatar} user_id={userData.id} alt='profile pic' width={'55px'} height={'55px'}/>
                         <textarea className="textarea" placeholder={`What's on your mind, ${userData['first_name']}?`}
                                   ref={newPostRef}/>
                     </div>
