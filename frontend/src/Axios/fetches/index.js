@@ -10,6 +10,16 @@ export const fetchPosts = async dispatch => {
     dispatch(f.postList(response.data.results));
 };
 
+export const fetchUserProfileData = async dispatch => {
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    // fetch user's data
+    const url = 'users/me/';
+    const response = await Axios.get(url, config);
+    dispatch(f.userData(response.data));
+};
+
 // fetch user information as well as user posts
 export const fetchUserdata = async dispatch => {
     const config = {
@@ -20,7 +30,7 @@ export const fetchUserdata = async dispatch => {
     dispatch(f.userData(response.data));
 
     //fetch user posts
-    const urlTwo = `social/posts/user/${response.data.id}/`;
+    const urlTwo = `social/posts/user/${response.data.id}/?limit=25&offset=0`;
     const responseTwo = await Axios.get(urlTwo, config);
     dispatch(f.userPosts(responseTwo.data.results));
 };
@@ -33,7 +43,7 @@ export const fetchLikedPosts = async dispatch => {
     const url = 'social/posts/likes/';
     try {
         const response = await Axios.get(url, config);
-        dispatch(f.liked(response.data.results));
+        dispatch(f.liked(response.data));
     } catch (e) {
         console.log(e);
     }
@@ -45,7 +55,7 @@ export const getFriendsRequests = async dispatch => {
     };
     const url = 'social/friends/requests/';
     const response = await Axios.get(url, config);
-    dispatch(f.friendReqs(response.data.results));
+    dispatch(f.friendReqs(response.data));
 };
 
 export const getUsers = async dispatch => {
@@ -66,7 +76,7 @@ export const fetchFriendPosts = async dispatch => {
     try {
         const response = await Axios.get(url, config);
         console.log(response)
-        dispatch(f.friendPosts(response.data.results));
+        dispatch(f.friendPosts(response.data));
     } catch (e) {
         console.log(e);
     }
@@ -80,9 +90,8 @@ export const fetchFollowed = async dispatch => {
     const url = 'social/posts/following/';
     try {
         const response = await Axios.get(url, config);
-        dispatch(f.followed(response.data.results));
+        dispatch(f.followed(response.data));
     } catch (e) {
         console.log(e);
     }
 };
-

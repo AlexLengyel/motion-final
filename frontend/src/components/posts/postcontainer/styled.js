@@ -81,12 +81,4 @@ export const PostWrapper = styled.div`
             cursor: pointer;
         }
     }
-
-    .liked {
-        background: black;
-    }
-
-    .not-liked {
-        /* background: black; */
-    }
 `;

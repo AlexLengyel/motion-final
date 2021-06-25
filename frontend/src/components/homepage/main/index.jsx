@@ -1,6 +1,6 @@
 import React from 'react';
 import { LeftContainer, Top, Middle, Bottom } from './styled';
-import logo from '../../../assets/main/logo.svg';
+import logo from '../../../assets/main/logo.png';
 import appStore from '../../../assets/main/app_store.svg';
 import playStore from '../../../assets/main/play_store.svg';
 import twitter from '../../../assets/main/twitter.svg';

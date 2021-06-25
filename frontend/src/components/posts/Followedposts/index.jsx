@@ -8,7 +8,6 @@ import SearchBar from '../searchbar'
 
 export const FollowedPosts = () => {
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchFollowed)
     }, [dispatch])

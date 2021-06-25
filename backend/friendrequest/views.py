@@ -27,8 +27,13 @@ class NewFriendRequest(CreateAPIView):
         receiver = User.objects.get(id=self.kwargs['pk'])
 
         # User cannot add himself or duplicate same request
-        if requester.id == self.kwargs['pk'] or receiver in requester.friends.all():
+        if requester.id == self.kwargs['pk']:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        # to remove a friend
+        elif receiver in requester.friends.all():
+            requester.friends.remove(receiver)
+            return Response(status=status.HTTP_201_CREATED)
 
         # in case two users add eachother at the same time, change status of first request to "Accepted"
         # instead of creating two requests between same users

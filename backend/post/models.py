@@ -14,6 +14,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(to=User, related_name="user_posts", on_delete=models.CASCADE)
     liked_by = models.ManyToManyField(to=User, blank=True, related_name="liked_posts")
+    shared_from = models.ForeignKey('self', related_name='shared', blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Post: {self.id}, Author: {self.author}"

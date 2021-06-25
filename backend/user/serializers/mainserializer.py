@@ -17,10 +17,10 @@ class MainUserSerializer(serializers.ModelSerializer):
     amount_of_following = serializers.SerializerMethodField(read_only=True)
 
     def get_logged_in_user_is_following(self, obj):
-        return self.context['request'].user.id in obj.following.core_filters
+        return self.context['request'].user in obj.followers.all()
 
     def get_logged_in_user_is_friends(self, obj):
-        return self.context['request'].user.id in obj.friends.core_filters
+        return self.context['request'].user in obj.friends.all()
 
     def get_logged_in_user_is_rejected(self, obj):
         return len(FriendRequest.objects.filter(
@@ -28,7 +28,7 @@ class MainUserSerializer(serializers.ModelSerializer):
 
     def get_logged_in_user_received_fr(self, obj):
         return len(FriendRequest.objects.filter(
-            receiver=obj, requester=self.context['request'].user)) > 0
+            receiver=obj, requester=self.context['request'].user, status='P')) > 0
 
     def get_amount_of_posts(self, obj):
         return obj.user_posts.count()

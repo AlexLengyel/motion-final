@@ -9,7 +9,8 @@ const SEARCH_RESULTS = 'SEARCH_RESULTS';
 const LIKED_POSTS = 'LIKED_POSTS'
 const FRIEND_POSTS = 'FRIEND_POSTS'
 const FOLLOW_POSTS = 'FOLLOW_POSTS'
- 
+const ALL_COMMENTS = 'ALL_COMMENTS'
+const NEW_COMMENT = 'NEW_COMMENT'
 
 export const addToken = (data) => {
     return {
@@ -88,5 +89,18 @@ export const followed = (data) => {
         payload: data
     }
 }
-  
+
+export const AllComments = (data) => {
+    return {
+        type: ALL_COMMENTS,
+        payload: data
+    }
+}
+
+export const newComment = (data) => {
+    return {
+        type: NEW_COMMENT,
+        payload: data
+    }
+}
           
